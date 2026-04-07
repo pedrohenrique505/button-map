@@ -32,6 +32,7 @@ select {
 
 .app-header,
 .empty-state,
+.visual-card,
 .gamepad-card {
   background: #ffffff;
   border: 1px solid #d1d5db;
@@ -44,6 +45,7 @@ select {
 }
 
 .app-header h1,
+.visual-card h2,
 .gamepad-card h2,
 .gamepad-card h3,
 .empty-state h2 {
@@ -51,10 +53,128 @@ select {
 }
 
 .app-header p,
+.visual-card p,
 .empty-state p,
 .gamepad-header p {
   color: #4b5563;
   margin-bottom: 0;
+}
+
+.visual-card {
+  margin-bottom: 16px;
+}
+
+.visual-card-header {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.visual-card-header span {
+  color: #4b5563;
+  white-space: nowrap;
+}
+
+.gamepad-visual {
+  display: grid;
+  gap: 12px;
+}
+
+.shoulder-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.shoulder-button,
+.visual-button,
+.analog-stick,
+.center-buttons span {
+  border: 2px solid #9ca3af;
+  background: #f9fafb;
+}
+
+.shoulder-button {
+  border-radius: 12px 12px 6px 6px;
+  padding: 14px 8px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.gamepad-body {
+  display: grid;
+  grid-template-columns: 170px 1fr 170px;
+  gap: 24px;
+  align-items: center;
+  border: 2px solid #9ca3af;
+  border-radius: 32px;
+  padding: 28px;
+  background: #e5e7eb;
+}
+
+.dpad,
+.face-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 48px);
+  grid-template-rows: repeat(3, 48px);
+  gap: 8px;
+  justify-content: center;
+}
+
+.visual-button {
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.dpad .visual-button {
+  border-radius: 8px;
+}
+
+.dpad-center {
+  background: #d1d5db;
+}
+
+.analog-area {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.analog-stick {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  border-radius: 999px;
+  margin: 0 auto;
+  background: #e5e7eb;
+}
+
+.analog-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: #374151;
+  transform: translate(-50%, -50%);
+}
+
+.center-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.center-buttons span {
+  border-radius: 999px;
+  padding: 8px 10px;
+  color: #4b5563;
+  font-size: 0.75rem;
+  font-weight: 700;
 }
 
 .gamepad-list {
@@ -117,9 +237,20 @@ select {
 }
 
 @media (max-width: 700px) {
+  .visual-card-header,
   .gamepad-header,
   .gamepad-summary {
     flex-direction: column;
+  }
+
+  .shoulder-row,
+  .gamepad-body,
+  .analog-area {
+    grid-template-columns: 1fr;
+  }
+
+  .gamepad-body {
+    padding: 20px;
   }
 
   .input-row {

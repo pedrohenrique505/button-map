@@ -1,4 +1,5 @@
 import GamepadViewer from './components/GamepadViewer.jsx';
+import GamepadVisual from './components/GamepadVisual.jsx';
 import { useGamepads } from './hooks/useGamepads.js';
 
 function App() {
@@ -23,11 +24,15 @@ function App() {
           </p>
         </section>
       ) : (
-        <section className="gamepad-list" aria-label="Controles conectados">
-          {gamepads.map((gamepad) => (
-            <GamepadViewer key={gamepad.index} gamepad={gamepad} />
-          ))}
-        </section>
+        <>
+          <GamepadVisual gamepad={gamepads[0]} />
+
+          <section className="gamepad-list" aria-label="Controles conectados">
+            {gamepads.map((gamepad) => (
+              <GamepadViewer key={gamepad.index} gamepad={gamepad} />
+            ))}
+          </section>
+        </>
       )}
     </main>
   );
