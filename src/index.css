@@ -46,6 +46,7 @@ select {
 
 .app-header h1,
 .visual-card h2,
+.section-header h2,
 .gamepad-card h2,
 .gamepad-card h3,
 .empty-state h2 {
@@ -54,6 +55,7 @@ select {
 
 .app-header p,
 .visual-card p,
+.section-header p,
 .empty-state p,
 .gamepad-header p {
   color: #4b5563;
@@ -185,6 +187,15 @@ select {
   font-weight: 700;
 }
 
+.technical-section {
+  display: grid;
+  gap: 12px;
+}
+
+.section-header {
+  padding: 0 4px;
+}
+
 .gamepad-list {
   display: grid;
   gap: 16px;
@@ -248,8 +259,12 @@ select {
 .shoulder-button.is-active,
 .center-buttons span.is-active {
   border-color: #2563eb;
-  background: #dbeafe;
   font-weight: 700;
+}
+
+.visual-button.is-active,
+.center-buttons span.is-active {
+  background: #dbeafe;
 }
 
 @media (max-width: 700px) {

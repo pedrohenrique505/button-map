@@ -27,10 +27,20 @@ function App() {
         <>
           <GamepadVisual gamepad={gamepads[0]} />
 
-          <section className="gamepad-list" aria-label="Controles conectados">
-            {gamepads.map((gamepad) => (
-              <GamepadViewer key={gamepad.index} gamepad={gamepad} />
-            ))}
+          <section className="technical-section" aria-label="Controles conectados">
+            <div className="section-header">
+              <h2>Listagem técnica</h2>
+              <p>
+                Todos os controles conectados continuam aparecendo aqui com
+                botões e eixos em tempo real.
+              </p>
+            </div>
+
+            <div className="gamepad-list">
+              {gamepads.map((gamepad) => (
+                <GamepadViewer key={gamepad.index} gamepad={gamepad} />
+              ))}
+            </div>
           </section>
         </>
       )}
