@@ -96,10 +96,18 @@ select {
 }
 
 .shoulder-button {
+  --trigger-value: 0;
   border-radius: 12px 12px 6px 6px;
   padding: 14px 8px;
   text-align: center;
   font-weight: 700;
+  background:
+    linear-gradient(
+      to top,
+      #bfdbfe calc(var(--trigger-value) * 100%),
+      transparent 0
+    ),
+    #f9fafb;
 }
 
 .gamepad-body {
@@ -231,6 +239,14 @@ select {
 }
 
 .input-row.is-active {
+  border-color: #2563eb;
+  background: #dbeafe;
+  font-weight: 700;
+}
+
+.visual-button.is-active,
+.shoulder-button.is-active,
+.center-buttons span.is-active {
   border-color: #2563eb;
   background: #dbeafe;
   font-weight: 700;
