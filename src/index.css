@@ -390,6 +390,87 @@ dl {
   gap: 16px;
 }
 
+.visual-map-panel {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.gamepad-map-stage {
+  padding: 18px 0 0;
+  border-top: 1px solid var(--panel-line);
+}
+
+.controller-map {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: rgba(17, 17, 17, 0.68);
+}
+
+.controller-outline {
+  color: rgba(17, 17, 17, 0.7);
+}
+
+.controller-trigger-group text,
+.controller-shoulder-labels text,
+.controller-callouts text {
+  fill: rgba(17, 17, 17, 0.38);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.controller-shoulder-labels text.is-active {
+  fill: rgba(17, 17, 17, 0.92);
+}
+
+.controller-trigger {
+  fill: rgba(17, 17, 17, 0.06);
+  stroke: rgba(17, 17, 17, 0.3);
+  stroke-width: 1.5;
+}
+
+.controller-trigger.is-active {
+  fill: rgba(17, 17, 17, 0.92);
+  stroke: rgba(17, 17, 17, 0.92);
+}
+
+.controller-trigger-group text {
+  fill: rgba(243, 241, 236, 0.94);
+}
+
+.controller-surface {
+  fill: rgba(17, 17, 17, 0.02);
+  stroke: rgba(17, 17, 17, 0.32);
+  stroke-width: 1.5;
+}
+
+.controller-surface.is-active {
+  fill: rgba(17, 17, 17, 0.94);
+}
+
+.controller-stick-base {
+  fill: rgba(17, 17, 17, 0.02);
+  stroke: rgba(17, 17, 17, 0.38);
+  stroke-width: 1.5;
+}
+
+.controller-stick-base.is-active {
+  fill: rgba(17, 17, 17, 0.08);
+}
+
+.controller-stick-inner {
+  fill: none;
+  stroke: rgba(17, 17, 17, 0.44);
+  stroke-width: 1.2;
+  stroke-dasharray: 2 3;
+}
+
+.controller-stick-pointer {
+  fill: #111111;
+}
+
 .shoulder-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
