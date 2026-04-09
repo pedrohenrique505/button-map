@@ -85,9 +85,28 @@ dl {
   text-transform: uppercase;
 }
 
+.site-header-left,
+.site-nav {
+  display: flex;
+  align-items: center;
+}
+
+.site-header-left {
+  gap: 28px;
+}
+
 .site-mark,
 .site-header-meta {
   font-weight: 800;
+}
+
+.site-nav {
+  gap: 20px;
+  color: var(--text-faint);
+}
+
+.site-nav a:hover {
+  color: var(--text-main);
 }
 
 .site-header-meta {
@@ -105,6 +124,54 @@ dl {
 .dashboard-stack {
   display: grid;
   gap: 72px;
+}
+
+.connected-panel {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.92fr) minmax(0, 1.2fr);
+  gap: 44px;
+  padding-top: 18px;
+}
+
+.connected-sidebar,
+.connected-main,
+.connected-sidebar-block {
+  display: grid;
+  gap: 28px;
+}
+
+.connected-hero-copy {
+  padding-top: 28px;
+}
+
+.connected-hero-copy h1 {
+  max-width: 420px;
+  margin-bottom: 0;
+  font-size: clamp(3rem, 6vw, 4.8rem);
+  line-height: 0.9;
+  letter-spacing: -0.08em;
+  text-transform: uppercase;
+}
+
+.connected-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  padding: 22px 0;
+  border-top: 1px solid var(--panel-line);
+  border-bottom: 1px solid var(--panel-line);
+}
+
+.connected-meta-grid div {
+  padding-right: 12px;
+}
+
+.connected-meta-grid strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.45rem;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
 }
 
 .empty-hero,
@@ -510,6 +577,10 @@ dl {
     grid-template-columns: 1fr;
     gap: 42px;
   }
+
+  .connected-panel {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 760px) {
@@ -532,6 +603,21 @@ dl {
     flex-direction: column;
   }
 
+  .site-header-left,
+  .site-nav,
+  .connected-meta-grid {
+    flex-direction: column;
+  }
+
+  .site-header-left {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .site-nav {
+    gap: 10px;
+  }
+
   .empty-panel,
   .dashboard-stack {
     gap: 48px;
@@ -552,6 +638,12 @@ dl {
   .gamepad-body,
   .analog-area {
     grid-template-columns: 1fr;
+  }
+
+  .connected-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
 
   .gamepad-body {

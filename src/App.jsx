@@ -1,5 +1,5 @@
 import GamepadViewer from './components/GamepadViewer.jsx';
-import GamepadVisual from './components/GamepadVisual.jsx';
+import ConnectedStatePanel from './components/ConnectedStatePanel.jsx';
 import EmptyStatePanel from './components/EmptyStatePanel.jsx';
 import StatusFooter from './components/StatusFooter.jsx';
 import { useGamepads } from './hooks/useGamepads.js';
@@ -11,11 +11,18 @@ function App() {
   return (
     <div className="app-shell">
       <header className="site-header">
-        <a className="site-mark" href="#top">
-          Button Map
-        </a>
+        <div className="site-header-left">
+          <a className="site-mark" href="#top">
+            Button Map
+          </a>
+          <nav className="site-nav" aria-label="Primary">
+            <a href="#devices">Devices</a>
+            <a href="#calibration">Calibration</a>
+            <a href="#logs">Logs</a>
+          </nav>
+        </div>
         <div className="site-header-meta" aria-label="Session status">
-          <span>{gamepads.length > 0 ? 'Controller Active' : 'Device Scan Pending'}</span>
+          <span>{gamepads.length > 0 ? 'Ver 1.0.4' : 'Device Scan Pending'}</span>
         </div>
       </header>
 
@@ -23,38 +30,13 @@ function App() {
         {gamepads.length === 0 ? (
           <EmptyStatePanel />
         ) : (
-          <div className="dashboard-stack">
-            <section className="live-intro">
-              <p className="eyebrow">Input Session Active</p>
-              <h1>Live Controller Diagnostics</h1>
-              <p>
-                Real-time button and axis telemetry stays visible while the
-                connected controller is active.
-              </p>
-            </section>
-
-            <GamepadVisual gamepad={primaryGamepad} />
-
-            <section
-              className="technical-section"
-              aria-label="Connected controllers"
-            >
-              <div className="section-header">
-                <p className="eyebrow">Connected Devices</p>
-                <h2>Raw Input Stream</h2>
-                <p>
-                  Every detected controller remains listed below with live button
-                  and axis values.
-                </p>
-              </div>
-
-              <div className="gamepad-list">
-                {gamepads.map((gamepad) => (
-                  <GamepadViewer key={gamepad.index} gamepad={gamepad} />
-                ))}
-              </div>
-            </section>
-          </div>
+          <ConnectedStatePanel
+            primaryGamepad={primaryGamepad}
+            gamepads={gamepads}
+            viewerSlot={gamepads.map((gamepad) => (
+              <GamepadViewer key={gamepad.index} gamepad={gamepad} />
+            ))}
+          />
         )}
       </main>
 
