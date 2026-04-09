@@ -38,13 +38,18 @@ function getStickStyle(gamepad, xAxisIndex, yAxisIndex) {
 
 function GamepadVisual({ gamepad }) {
   return (
-    <section className="visual-card" aria-label="Controle visual principal">
+    <section
+      className="visual-card"
+      id="devices"
+      aria-label="Primary controller visual"
+    >
       <div className="visual-card-header">
         <div>
-          <h2>Controle visual</h2>
+          <p className="card-kicker">Primary Device</p>
+          <h2>Live Controller Map</h2>
           <p>{gamepad.id}</p>
         </div>
-        <span>Índice {gamepad.index}</span>
+        <span>Index {gamepad.index}</span>
       </div>
 
       <div className="gamepad-visual">

@@ -1,50 +1,65 @@
 import GamepadViewer from './components/GamepadViewer.jsx';
 import GamepadVisual from './components/GamepadVisual.jsx';
+import EmptyStatePanel from './components/EmptyStatePanel.jsx';
+import StatusFooter from './components/StatusFooter.jsx';
 import { useGamepads } from './hooks/useGamepads.js';
 
 function App() {
   const gamepads = useGamepads();
+  const primaryGamepad = gamepads[0];
 
   return (
-    <main className="app">
-      <header className="app-header">
-        <h1>Button Map</h1>
-        <p>
-          Conecte um controle e pressione qualquer botão para ver os inputs em
-          tempo real.
-        </p>
+    <div className="app-shell">
+      <header className="site-header">
+        <a className="site-mark" href="#top">
+          Button Map
+        </a>
+        <div className="site-header-meta" aria-label="Session status">
+          <span>{gamepads.length > 0 ? 'Controller Active' : 'Device Scan Pending'}</span>
+        </div>
       </header>
 
-      {gamepads.length === 0 ? (
-        <section className="empty-state">
-          <h2>Nenhum controle conectado</h2>
-          <p>
-            Alguns navegadores só liberam a Gamepad API depois que você aperta
-            um botão no controle.
-          </p>
-        </section>
-      ) : (
-        <>
-          <GamepadVisual gamepad={gamepads[0]} />
-
-          <section className="technical-section" aria-label="Controles conectados">
-            <div className="section-header">
-              <h2>Listagem técnica</h2>
+      <main className="app-main" id="top">
+        {gamepads.length === 0 ? (
+          <EmptyStatePanel />
+        ) : (
+          <div className="dashboard-stack">
+            <section className="live-intro">
+              <p className="eyebrow">Input Session Active</p>
+              <h1>Live Controller Diagnostics</h1>
               <p>
-                Todos os controles conectados continuam aparecendo aqui com
-                botões e eixos em tempo real.
+                Real-time button and axis telemetry stays visible while the
+                connected controller is active.
               </p>
-            </div>
+            </section>
 
-            <div className="gamepad-list">
-              {gamepads.map((gamepad) => (
-                <GamepadViewer key={gamepad.index} gamepad={gamepad} />
-              ))}
-            </div>
-          </section>
-        </>
-      )}
-    </main>
+            <GamepadVisual gamepad={primaryGamepad} />
+
+            <section
+              className="technical-section"
+              aria-label="Connected controllers"
+            >
+              <div className="section-header">
+                <p className="eyebrow">Connected Devices</p>
+                <h2>Raw Input Stream</h2>
+                <p>
+                  Every detected controller remains listed below with live button
+                  and axis values.
+                </p>
+              </div>
+
+              <div className="gamepad-list">
+                {gamepads.map((gamepad) => (
+                  <GamepadViewer key={gamepad.index} gamepad={gamepad} />
+                ))}
+              </div>
+            </section>
+          </div>
+        )}
+      </main>
+
+      <StatusFooter gamepads={gamepads} />
+    </div>
   );
 }
 

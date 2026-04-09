@@ -8,44 +8,44 @@ function GamepadViewer({ gamepad }) {
       <header className="gamepad-header">
         <div>
           <h2>{gamepad.id}</h2>
-          <p>Índice: {gamepad.index}</p>
+          <p>Index: {gamepad.index}</p>
         </div>
 
         <dl className="gamepad-summary">
           <div>
-            <dt>Botões</dt>
+            <dt>Buttons</dt>
             <dd>{gamepad.buttons.length}</dd>
           </div>
           <div>
-            <dt>Eixos</dt>
+            <dt>Axes</dt>
             <dd>{gamepad.axes.length}</dd>
           </div>
         </dl>
       </header>
 
       <section>
-        <h3>Botões</h3>
+        <h3>Buttons</h3>
         <div className="input-grid">
           {gamepad.buttons.map((button, index) => (
             <div
               className={`input-row ${button.pressed ? 'is-active' : ''}`}
               key={index}
             >
-              <span>Botão {index}</span>
-              <span>{button.pressed ? 'pressionado' : 'solto'}</span>
-              <span>valor: {formatValue(button.value)}</span>
+              <span>Button {index}</span>
+              <span>{button.pressed ? 'pressed' : 'idle'}</span>
+              <span>value: {formatValue(button.value)}</span>
             </div>
           ))}
         </div>
       </section>
 
       <section>
-        <h3>Eixos</h3>
+        <h3>Axes</h3>
         <div className="input-grid">
           {gamepad.axes.map((axisValue, index) => (
             <div className="input-row" key={index}>
-              <span>Eixo {index}</span>
-              <span>valor: {formatValue(axisValue)}</span>
+              <span>Axis {index}</span>
+              <span>value: {formatValue(axisValue)}</span>
             </div>
           ))}
         </div>

@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+const RESCAN_EVENT_NAME = 'button-map:rescan';
+
 function readConnectedGamepads() {
   if (!navigator.getGamepads) {
     return [];
@@ -19,9 +21,15 @@ export function useGamepads() {
       animationFrameId = requestAnimationFrame(updateGamepads);
     }
 
+    function handleRescanRequest() {
+      setGamepads(readConnectedGamepads());
+    }
+
+    window.addEventListener(RESCAN_EVENT_NAME, handleRescanRequest);
     updateGamepads();
 
     return () => {
+      window.removeEventListener(RESCAN_EVENT_NAME, handleRescanRequest);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);

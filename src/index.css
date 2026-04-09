@@ -1,20 +1,45 @@
 :root {
-  color: #1f2937;
-  background: #f3f4f6;
+  color: #111111;
+  background-color: #f3f1ec;
   font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
+    Inter,
+    "Arial Narrow",
+    "Helvetica Neue",
+    Arial,
     sans-serif;
+  color-scheme: light;
+  --page-bg: #f3f1ec;
+  --page-line: rgba(17, 17, 17, 0.06);
+  --text-main: #111111;
+  --text-muted: rgba(17, 17, 17, 0.62);
+  --text-faint: rgba(17, 17, 17, 0.38);
+  --panel-line: rgba(17, 17, 17, 0.12);
+  --panel-strong: rgba(17, 17, 17, 0.18);
+  --surface: rgba(255, 255, 255, 0.44);
 }
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  background: var(--page-bg);
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
+  min-height: 100vh;
+  color: var(--text-main);
+  background-color: var(--page-bg);
+  background-image:
+    linear-gradient(var(--page-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--page-line) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+#root {
+  min-height: 100vh;
 }
 
 button,
@@ -24,92 +49,308 @@ select {
   font: inherit;
 }
 
-.app {
-  width: min(1100px, calc(100% - 32px));
-  margin: 0 auto;
-  padding: 32px 0;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-.app-header,
-.empty-state,
-.visual-card,
-.gamepad-card {
-  background: #ffffff;
-  border: 1px solid #d1d5db;
-  border-radius: 12px;
-  padding: 24px;
-}
-
-.app-header {
-  margin-bottom: 16px;
-}
-
-.app-header h1,
-.visual-card h2,
-.section-header h2,
-.gamepad-card h2,
-.gamepad-card h3,
-.empty-state h2 {
+h1,
+h2,
+h3,
+p,
+dl {
   margin-top: 0;
 }
 
-.app-header p,
-.visual-card p,
-.section-header p,
-.empty-state p,
-.gamepad-header p {
-  color: #4b5563;
-  margin-bottom: 0;
-}
-
-.visual-card {
-  margin-bottom: 16px;
-}
-
-.visual-card-header {
+.app-shell {
+  min-height: 100vh;
   display: flex;
-  gap: 16px;
+  flex-direction: column;
+}
+
+.site-header,
+.site-footer {
+  width: min(1200px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.site-header {
+  display: flex;
   justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  padding: 22px 0 14px;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.site-mark,
+.site-header-meta {
+  font-weight: 800;
+}
+
+.site-header-meta {
+  color: var(--text-faint);
+}
+
+.app-main {
+  width: min(1200px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 10px 0 56px;
+  flex: 1;
+}
+
+.empty-panel,
+.dashboard-stack {
+  display: grid;
+  gap: 72px;
+}
+
+.empty-hero,
+.live-intro {
+  min-height: 68vh;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.eyebrow,
+.card-kicker,
+.controller-hero-status,
+.gamepad-summary dt,
+.info-stats dt {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.controller-hero-frame {
+  width: min(720px, 100%);
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+}
+
+.controller-hero-status {
+  padding: 4px 8px;
+  border: 1px solid var(--panel-strong);
+  background: rgba(17, 17, 17, 0.04);
+  color: var(--text-main);
+}
+
+.controller-hero-asset {
+  width: min(720px, 100%);
+  min-height: 280px;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.controller-hero-asset::before {
+  content: "";
+  position: absolute;
+  inset: 8% 14%;
+  border: 1px solid rgba(17, 17, 17, 0.06);
+}
+
+.controller-hero-svg {
+  width: 100%;
+  height: auto;
+  color: rgba(17, 17, 17, 0.78);
+  animation: heroDrift 5.6s ease-in-out infinite;
+}
+
+.empty-copy {
+  max-width: 560px;
+}
+
+.empty-copy h1,
+.live-intro h1 {
+  margin-bottom: 14px;
+  font-size: clamp(2.6rem, 7vw, 4.6rem);
+  line-height: 0.94;
+  letter-spacing: -0.06em;
+}
+
+.empty-copy p,
+.live-intro p,
+.section-header p,
+.visual-card-header p,
+.gamepad-header p,
+.info-lead > p,
+.info-columns p,
+.site-footer {
+  color: var(--text-muted);
+}
+
+.empty-copy p,
+.live-intro p {
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.empty-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 26px;
+}
+
+.primary-action {
+  min-width: 176px;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 1px solid #111111;
+  border-radius: 0;
+  background: #111111;
+  color: #f3f1ec;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.primary-action:hover {
+  background: transparent;
+  color: #111111;
+  transform: translateY(-1px);
+}
+
+.primary-action:focus-visible,
+.site-mark:focus-visible {
+  outline: 2px solid #111111;
+  outline-offset: 3px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 64px;
+  padding: 48px 0 32px;
+  border-top: 1px solid var(--panel-line);
+}
+
+.info-lead h2 {
+  max-width: 360px;
+  margin-bottom: 22px;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+.info-lead > p {
+  max-width: 520px;
+  line-height: 1.75;
+}
+
+.info-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin: 32px 0 0;
+}
+
+.info-stats div {
+  min-width: 88px;
+}
+
+.info-stats dd {
+  margin: 8px 0 0;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.info-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 36px;
+}
+
+.info-columns article {
+  padding-top: 6px;
+}
+
+.info-columns p:last-child {
+  margin-bottom: 0;
+  line-height: 1.7;
+}
+
+.visual-card,
+.gamepad-card {
+  padding: 28px 0 0;
+  border-top: 1px solid var(--panel-line);
+}
+
+.visual-card-header,
+.gamepad-header,
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
   margin-bottom: 24px;
 }
 
+.visual-card-header h2,
+.section-header h2,
+.gamepad-card h2 {
+  margin-bottom: 8px;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  letter-spacing: -0.05em;
+}
+
 .visual-card-header span {
-  color: #4b5563;
-  white-space: nowrap;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
 }
 
 .gamepad-visual {
   display: grid;
-  gap: 12px;
+  gap: 16px;
 }
 
 .shoulder-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  gap: 8px;
 }
 
 .shoulder-button,
 .visual-button,
 .analog-stick,
-.center-buttons span {
-  border: 2px solid #9ca3af;
-  background: #f9fafb;
+.center-buttons span,
+.gamepad-summary div,
+.input-row {
+  border: 1px solid var(--panel-line);
+  background: rgba(255, 255, 255, 0.16);
 }
 
 .shoulder-button {
   --trigger-value: 0;
-  border-radius: 12px 12px 6px 6px;
-  padding: 14px 8px;
+  padding: 12px 8px;
   text-align: center;
   font-weight: 700;
   background:
     linear-gradient(
       to top,
-      #bfdbfe calc(var(--trigger-value) * 100%),
+      rgba(17, 17, 17, 0.12) calc(var(--trigger-value) * 100%),
       transparent 0
     ),
-    #f9fafb;
+    rgba(255, 255, 255, 0.12);
 }
 
 .gamepad-body {
@@ -117,10 +358,9 @@ select {
   grid-template-columns: 170px 1fr 170px;
   gap: 24px;
   align-items: center;
-  border: 2px solid #9ca3af;
-  border-radius: 32px;
   padding: 28px;
-  background: #e5e7eb;
+  border: 1px solid var(--panel-line);
+  background: rgba(255, 255, 255, 0.14);
 }
 
 .dpad,
@@ -135,16 +375,11 @@ select {
 .visual-button {
   display: grid;
   place-items: center;
-  border-radius: 999px;
   font-weight: 700;
 }
 
-.dpad .visual-button {
-  border-radius: 8px;
-}
-
 .dpad-center {
-  background: #d1d5db;
+  background: rgba(17, 17, 17, 0.06);
 }
 
 .analog-area {
@@ -158,19 +393,16 @@ select {
   position: relative;
   width: 96px;
   height: 96px;
-  border-radius: 999px;
   margin: 0 auto;
-  background: #e5e7eb;
 }
 
 .analog-dot {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 34px;
-  height: 34px;
-  border-radius: 999px;
-  background: #374151;
+  width: 30px;
+  height: 30px;
+  background: #111111;
   transform: translate(-50%, -50%);
 }
 
@@ -180,32 +412,16 @@ select {
 }
 
 .center-buttons span {
-  border-radius: 999px;
   padding: 8px 10px;
-  color: #4b5563;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
+  letter-spacing: 0.08em;
 }
 
+.gamepad-list,
 .technical-section {
   display: grid;
-  gap: 12px;
-}
-
-.section-header {
-  padding: 0 4px;
-}
-
-.gamepad-list {
-  display: grid;
-  gap: 16px;
-}
-
-.gamepad-header {
-  display: flex;
-  gap: 24px;
-  justify-content: space-between;
-  margin-bottom: 24px;
+  gap: 22px;
 }
 
 .gamepad-summary {
@@ -215,22 +431,14 @@ select {
 }
 
 .gamepad-summary div {
-  min-width: 88px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
+  min-width: 96px;
   padding: 12px;
-  text-align: center;
-}
-
-.gamepad-summary dt {
-  color: #6b7280;
-  font-size: 0.875rem;
 }
 
 .gamepad-summary dd {
+  margin: 6px 0 0;
   font-size: 1.5rem;
   font-weight: 700;
-  margin: 4px 0 0;
 }
 
 .input-grid {
@@ -243,37 +451,103 @@ select {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 12px;
   align-items: center;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 10px 12px;
-  background: #f9fafb;
+  min-height: 48px;
+  padding: 0 14px;
+  font-size: 0.92rem;
 }
 
-.input-row.is-active {
-  border-color: #2563eb;
-  background: #dbeafe;
-  font-weight: 700;
-}
-
+.input-row.is-active,
 .visual-button.is-active,
 .shoulder-button.is-active,
 .center-buttons span.is-active {
-  border-color: #2563eb;
+  background: rgba(17, 17, 17, 0.1);
+  border-color: var(--panel-strong);
+  font-weight: 800;
+}
+
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 0 28px;
+  border-top: 1px solid var(--panel-line);
+  font-size: 0.72rem;
   font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-.visual-button.is-active,
-.center-buttons span.is-active {
-  background: #dbeafe;
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  color: var(--text-faint);
 }
 
-@media (max-width: 700px) {
+@keyframes heroDrift {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.78;
+  }
+
+  50% {
+    transform: translateY(-4px);
+    opacity: 0.92;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .controller-hero-svg,
+  .primary-action {
+    animation: none;
+    transition: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+}
+
+@media (max-width: 760px) {
+  body {
+    background-size: 24px 24px;
+  }
+
+  .site-header,
+  .app-main,
+  .site-footer {
+    width: min(100%, calc(100% - 32px));
+  }
+
+  .site-header,
+  .site-footer,
   .visual-card-header,
   .gamepad-header,
+  .section-header,
   .gamepad-summary {
     flex-direction: column;
   }
 
+  .empty-panel,
+  .dashboard-stack {
+    gap: 48px;
+  }
+
+  .empty-hero,
+  .live-intro {
+    min-height: auto;
+    padding: 48px 0 0;
+  }
+
+  .controller-hero-asset {
+    min-height: 180px;
+  }
+
+  .info-columns,
   .shoulder-row,
   .gamepad-body,
   .analog-area {
@@ -281,10 +555,11 @@ select {
   }
 
   .gamepad-body {
-    padding: 20px;
+    padding: 18px;
   }
 
   .input-row {
     grid-template-columns: 1fr;
+    padding: 12px 14px;
   }
 }
