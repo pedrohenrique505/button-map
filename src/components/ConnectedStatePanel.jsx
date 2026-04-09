@@ -1,13 +1,27 @@
 import AnalogTelemetry from './AnalogTelemetry.jsx';
 import GamepadVisual from './GamepadVisual.jsx';
 
+function formatDeviceLabel(id) {
+  return id
+    .replace(/\(.*?\)/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toUpperCase();
+}
+
 function ConnectedStatePanel({ primaryGamepad, gamepads, viewerSlot }) {
+  const deviceLabel = formatDeviceLabel(primaryGamepad.id);
+
   return (
     <section className="connected-panel" aria-label="Connected controller diagnostics">
       <div className="connected-sidebar">
         <section className="connected-hero-copy">
           <p className="eyebrow">System Active</p>
-          <h1>{primaryGamepad.id}</h1>
+          <h1>
+            <span>Connected:</span>
+            <br />
+            {deviceLabel}
+          </h1>
         </section>
 
         <section className="connected-meta-grid" id="calibration">

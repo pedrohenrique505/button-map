@@ -153,6 +153,11 @@ dl {
   text-transform: uppercase;
 }
 
+.connected-hero-copy h1 span {
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
 .connected-meta-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -848,6 +853,10 @@ dl {
     gap: 48px;
   }
 
+  .connected-panel {
+    gap: 32px;
+  }
+
   .empty-hero,
   .live-intro {
     min-height: auto;
@@ -856,6 +865,19 @@ dl {
 
   .controller-hero-asset {
     min-height: 180px;
+  }
+
+  .connected-hero-copy {
+    padding-top: 12px;
+  }
+
+  .connected-hero-copy h1 {
+    max-width: none;
+    font-size: clamp(2.6rem, 12vw, 4rem);
+  }
+
+  .gamepad-map-stage {
+    padding-top: 14px;
   }
 
   .info-columns,
