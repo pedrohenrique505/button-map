@@ -1,3 +1,4 @@
+import AnalogTelemetry from './AnalogTelemetry.jsx';
 import GamepadVisual from './GamepadVisual.jsx';
 
 function ConnectedStatePanel({ primaryGamepad, gamepads, viewerSlot }) {
@@ -23,6 +24,8 @@ function ConnectedStatePanel({ primaryGamepad, gamepads, viewerSlot }) {
             <strong>{gamepads.length}</strong>
           </div>
         </section>
+
+        <AnalogTelemetry gamepad={primaryGamepad} />
 
         <section className="connected-sidebar-block" id="logs">
           <div className="section-header">

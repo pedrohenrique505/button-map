@@ -568,6 +568,89 @@ dl {
   border-color: var(--panel-strong);
 }
 
+.analog-telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.analog-field {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  padding: 14px 0;
+  border-top: 1px solid var(--panel-line);
+}
+
+.analog-circle-wrap {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+}
+
+.analog-circle {
+  position: relative;
+  width: 84px;
+  height: 84px;
+  border: 1px solid var(--panel-line);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, rgba(17, 17, 17, 0.02) 0, rgba(17, 17, 17, 0.02) 32%, transparent 33%),
+    rgba(255, 255, 255, 0.16);
+}
+
+.analog-crosshair {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: rgba(17, 17, 17, 0.14);
+  transform: translate(-50%, -50%);
+}
+
+.analog-crosshair-x {
+  width: 1px;
+  height: calc(100% - 16px);
+}
+
+.analog-crosshair-y {
+  width: calc(100% - 16px);
+  height: 1px;
+}
+
+.analog-pointer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #111111;
+}
+
+.analog-readout {
+  display: grid;
+  gap: 10px;
+}
+
+.analog-readout div {
+  display: grid;
+  gap: 4px;
+}
+
+.analog-readout span {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.analog-readout strong {
+  font-size: 1.28rem;
+  letter-spacing: -0.05em;
+}
+
 .input-grid {
   display: grid;
   gap: 8px;
@@ -698,6 +781,7 @@ dl {
   .shoulder-row,
   .gamepad-body,
   .analog-area,
+  .analog-telemetry-grid,
   .digital-grid {
     grid-template-columns: 1fr;
   }
