@@ -508,6 +508,66 @@ dl {
   font-weight: 700;
 }
 
+.telemetry-block + .telemetry-block {
+  margin-top: 28px;
+}
+
+.telemetry-block-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.telemetry-block-header h3 {
+  margin-bottom: 0;
+  font-size: 0.98rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.telemetry-block-header span {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.digital-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.digital-cell {
+  display: grid;
+  gap: 8px;
+  min-height: 64px;
+  padding: 12px 10px;
+  border: 1px solid var(--panel-line);
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.digital-cell span {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.digital-cell strong {
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.digital-cell.is-active {
+  background: rgba(17, 17, 17, 0.1);
+  border-color: var(--panel-strong);
+}
+
 .input-grid {
   display: grid;
   gap: 8px;
@@ -599,7 +659,8 @@ dl {
   .visual-card-header,
   .gamepad-header,
   .section-header,
-  .gamepad-summary {
+  .gamepad-summary,
+  .telemetry-block-header {
     flex-direction: column;
   }
 
@@ -636,7 +697,8 @@ dl {
   .info-columns,
   .shoulder-row,
   .gamepad-body,
-  .analog-area {
+  .analog-area,
+  .digital-grid {
     grid-template-columns: 1fr;
   }
 
